@@ -1,10 +1,14 @@
 {
   "name": "quijote-web",
   "version": "1.0.0",
-  "description": "## Installation ```bash npm install ```",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run lint",
+    "watch": "node webpack/server",
+    "start": "npm run watch",
+    "build": "webpack --config webpack/prod.config.js",
+    "lint": "eslint . --ignore-path .gitignore"
   },
   "repository": {
     "type": "git",
