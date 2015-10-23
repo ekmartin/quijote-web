@@ -1,20 +1,20 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { debounce } from 'lodash';
-import Dialog from 'rc-dialog';
-import { search } from '../actions/QuoteActions';
+import QuoteEditor from './QuoteEditor';
+import { search, toggleQuoteEditor } from '../actions/QuoteActions';
 import Grid from './Grid';
 import List from './List';
 
-const Dashboard = ({ onSearch, favorites, quotes, dispatch, isFavorite }) => (
+const Dashboard = ({
+  onSearch,
+  favorites,
+  quotes,
+  dispatch,
+  isFavorite,
+  isQuoteEditorOpen
+}) => (
   <div className='Dashboard'>
-    <Dialog visible={false} onClose={() => {}}>
-      <label>Author</label>
-      <input type='text' />
-
-      <label>Quote</label>
-      <textarea />
-    </Dialog>
 
     <div className='Header'>
       <input
@@ -29,8 +29,12 @@ const Dashboard = ({ onSearch, favorites, quotes, dispatch, isFavorite }) => (
       <div>
         <div className='flex'>
           <h2>My Quotes</h2>
-          <button className='Button--transparent'><i className='fa fa-plus' /></button>
+          <button onClick={() => dispatch(toggleQuoteEditor())} className='Button--transparent'>
+            <i className={`fa ${isQuoteEditorOpen ? 'fa-close' : 'fa-plus'}`} />
+          </button>
         </div>
+
+        {isQuoteEditorOpen && <QuoteEditor />}
 
         <Grid items={favorites} />
       </div>
@@ -55,7 +59,8 @@ function selectFavorites(state) {
 @connect(state => ({
   favorites: selectFavorites(state),
   isFavorite: (id) => !!state.favorites[id],
-  quotes: Object.keys(state.quotes.items).map(id => state.quotes.items[id])
+  quotes: Object.keys(state.quotes.items).map(id => state.quotes.items[id]),
+  isQuoteEditorOpen: state.quotes.isQuoteEditorOpen
 }))
 export default class DashboardRoute extends Component {
   static propTypes = {

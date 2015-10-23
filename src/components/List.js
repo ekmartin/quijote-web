@@ -4,7 +4,7 @@ import { toggleFavorite } from '../actions/FavoriteActions';
 const ListItem = ({ author, text, expanded, toggle, isFavorite }) => (
   <div className='ListItem'>
     <div className='flex'>
-      {`${author}: ${text}`}
+      {`${author.name}: ${text}`}
       <div>
         <i
           onClick={toggle}

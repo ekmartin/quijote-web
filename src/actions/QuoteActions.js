@@ -1,7 +1,6 @@
 import { createAction } from 'redux-actions';
 import fetch from '../utils/fetch';
 import * as types from './ActionTypes';
-import { debounce } from 'lodash';
 
 export const listQuotes = createAction(types.LIST_QUOTES, () =>
   fetch('/quotes/')
@@ -31,5 +30,11 @@ export function search(query) {
         (response) => dispatch(searchResultReceived(response)),
         (error) => dispatch(searchFailed(error))
       );
+  };
+}
+
+export function toggleQuoteEditor() {
+  return {
+    type: types.TOGGLE_QUOTE_EDITOR
   };
 }
