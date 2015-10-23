@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import randomColor from 'randomcolor';
 
-const GridItem = ({ title }) => {
+const GridItem = ({ text }) => {
   const backgroundColor = randomColor();
   return (
     <div className='GridItem' style={{
       backgroundColor
     }}>
-      <blockquote className='quote'>{title}</blockquote>
+      <blockquote className='quote'>{text}</blockquote>
     </div>
   );
 };
