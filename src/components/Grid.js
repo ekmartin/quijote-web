@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import randomColor from 'randomcolor';
 
-const GridItem = ({ text }) => {
-  const backgroundColor = randomColor();
+const GridItem = ({ text, author, color }) => {
   return (
     <div className='GridItem' style={{
-      backgroundColor
+      backgroundColor: color
     }}>
       <blockquote className='quote'>{text}</blockquote>
+      <span>&mdash; {author.name}</span>
     </div>
   );
 };
@@ -25,7 +25,10 @@ export default class Grid extends Component {
     const { items } = this.props;
     return (
       <div className='Grid'>
-        {items.map(item => <GridItem {...item} />)}
+        {items.map(item => <GridItem
+          {...item}
+          color={randomColor()}
+        />)}
       </div>
     );
   }
