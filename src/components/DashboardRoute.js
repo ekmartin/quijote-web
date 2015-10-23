@@ -5,7 +5,7 @@ import { search } from '../actions/QuoteActions';
 import Grid from './Grid';
 import List from './List';
 
-const Dashboard = ({ onSearch, quotes }) => (
+const Dashboard = ({ onSearch, favorites, quotes, dispatch, isFavorite }) => (
   <div className='Dashboard'>
     <Dialog visible={false} onClose={() => {}}>
       <label>Author</label>
@@ -28,28 +28,33 @@ const Dashboard = ({ onSearch, quotes }) => (
       <div>
         <div className='flex'>
           <h2>My Quotes</h2>
-          <button className='Button--transparent'>Add a new</button>
+          <button className='Button--transparent'><i className='fa fa-plus' /></button>
         </div>
 
-        <Grid items={[
-          { title: 'Hello World' },
-          { title: 'From the editor' },
-          { title: 'I like this' },
-          { title: 'Very much'},
-          { title: 'Please go' }
-        ]}/>
+        <Grid items={favorites} />
       </div>
 
       <div>
         <h2>Results from WikiQuote</h2>
-        <List items={quotes} />
+        <List
+          items={quotes}
+          {...{ dispatch, isFavorite }}
+        />
       </div>
     </div>
   </div>
 );
 
+function selectFavorites(state) {
+  return Object.keys(state.favorites)
+    .filter(id => !!state.favorites[id])
+    .map(id => state.quotes.items[id]);
+}
+
 @connect(state => ({
-  quotes: state.quotes
+  favorites: selectFavorites(state),
+  isFavorite: (id) => !!state.favorites[id],
+  quotes: Object.keys(state.quotes.items).map(id => state.quotes.items[id])
 }))
 export default class DashboardRoute extends Component {
   static propTypes = {
@@ -63,6 +68,7 @@ export default class DashboardRoute extends Component {
       <Dashboard
         quotes={quotes}
         onSearch={query => dispatch(search(query))}
+        {...this.props}
       />
     );
   }
