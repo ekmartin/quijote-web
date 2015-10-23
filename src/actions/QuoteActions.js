@@ -3,20 +3,20 @@ import fetch from '../utils/fetch';
 import * as types from './ActionTypes';
 
 export const listQuotes = createAction(types.LIST_QUOTES, () =>
-  fetch('/api/quotes')
+  fetch('/quotes/')
 );
 
 export const retrieveQuote = createAction(types.RETRIEVE_QUOTE, id =>
-  fetch(`/api/quote/${id}/`)
+  fetch(`/quote/${id}/`)
 );
 
 export const createQuote = createAction(
   types.CREATE_QUOTE,
-  (quote) => fetch('/api/quotes', { method: 'post', body: JSON.stringify(quote) })
+  (quote) => fetch('/quotes/', { method: 'post', body: JSON.stringify(quote) })
 );
 
 export const searchResultReceived = createAction(
-  types.SEARCH_RESULT_RECEIVED
+  types.SEARCH_QUOTES_RECEIVED
 );
 
 export const searchFailed = createAction(
@@ -25,7 +25,7 @@ export const searchFailed = createAction(
 
 export function search(query) {
   return (dispatch, getState) => {
-    fetch(`/api/search?q=${query}`)
+    fetch(`/search/?q=${query}&size=10`)
       .then(
         (response) => dispatch(searchResultReceived(response)),
         (error) => dispatch(searchFailed(error))

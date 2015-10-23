@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 
-const ListItem = ({ title, expanded }) => (
+const ListItem = ({ author, text, expanded }) => (
   <div className='ListItem'>
-    {title}
+    {`${author}: ${text}`}
   </div>
 );
 

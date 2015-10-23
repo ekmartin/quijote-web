@@ -5,7 +5,7 @@ import { search } from '../actions/QuoteActions';
 import Grid from './Grid';
 import List from './List';
 
-const Dashboard = ({ onSearch }) => (
+const Dashboard = ({ onSearch, quotes }) => (
   <div className='Dashboard'>
     <Dialog visible={false} onClose={() => {}}>
       <label>Author</label>
@@ -42,27 +42,26 @@ const Dashboard = ({ onSearch }) => (
 
       <div>
         <h2>Results from WikiQuote</h2>
-        <List items={[
-          { title: 'Hello World' },
-          { title: 'Hello World' },
-          { title: 'Hello World' },
-          { title: 'Hello World' }
-        ]} />
+        <List items={quotes} />
       </div>
     </div>
   </div>
 );
 
-@connect(state => state)
+@connect(state => ({
+  quotes: state.quotes
+}))
 export default class DashboardRoute extends Component {
   static propTypes = {
-    dispatch: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired,
+    quotes: PropTypes.array.isRequired
   }
 
   render() {
-    const { dispatch } = this.props;
+    const { dispatch, quotes } = this.props;
     return (
       <Dashboard
+        quotes={quotes}
         onSearch={query => dispatch(search(query))}
       />
     );

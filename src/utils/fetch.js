@@ -1,5 +1,7 @@
 import 'whatwg-fetch';
 
+const API_URL = 'http://127.0.0.1:8000/api';
+
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
@@ -21,7 +23,7 @@ function doFetch(url, { method, body } = {}) {
   };
 
   if (body) options.body = JSON.stringify(body);
-  return fetch(url, options)
+  return fetch(API_URL + url, options)
     .then(checkStatus)
     .then(response => response.json());
 }
