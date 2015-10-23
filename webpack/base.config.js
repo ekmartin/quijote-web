@@ -10,7 +10,7 @@ module.exports = {
     publicPath: '/static/'
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.styl']
+    extensions: ['', '.js', '.jsx', '.styl', '.css']
   },
   module: {
     loaders: [
