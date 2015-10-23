@@ -1,9 +1,9 @@
 import React from 'react';
 import { IndexRoute, Route } from 'react-router';
-import NotFoundPage from './components/NotFoundPage';
+import DashboardRoute from './components/DashboardRoute';
 
 export default (
   <Route path='/'>
-    <Route path='*' component={NotFoundPage} />
+    <IndexRoute component={DashboardRoute} />
   </Route>
 );

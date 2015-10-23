@@ -1,4 +1,6 @@
 import promiseMiddleware from 'redux-promise';
+import thunkMiddleware from 'redux-thunk';
+import createLogger from 'redux-logger';
 import { createHistory } from 'history';
 import { reduxReactRouter } from 'redux-router';
 import { applyMiddleware, compose, createStore } from 'redux';
@@ -6,7 +8,7 @@ import routes from './routes';
 import reducer from './reducers';
 
 const middleware = [
-  applyMiddleware(promiseMiddleware),
+  applyMiddleware(thunkMiddleware, promiseMiddleware, createLogger()),
   reduxReactRouter({ routes, createHistory })
 ];
 
