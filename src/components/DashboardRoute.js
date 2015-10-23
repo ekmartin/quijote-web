@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
+import { debounce } from 'lodash';
 import Dialog from 'rc-dialog';
 import { search } from '../actions/QuoteActions';
 import Grid from './Grid';
@@ -67,7 +68,7 @@ export default class DashboardRoute extends Component {
     return (
       <Dashboard
         quotes={quotes}
-        onSearch={query => dispatch(search(query))}
+        onSearch={debounce(query => dispatch(search(query)), 500)}
         {...this.props}
       />
     );

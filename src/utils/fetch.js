@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 
-const API_URL = 'http://127.0.0.1:8000/api';
+const API_URL = 'http://10.20.54.84:8000/api';
 
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
