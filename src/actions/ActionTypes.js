@@ -1,0 +1,2 @@
+export const LIST_QUOTES = 'LIST_QUOTES';
+export const RETRIEVE_QUOTE = 'RETRIEVE_QUOTE';
