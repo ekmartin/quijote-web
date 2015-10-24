@@ -32,6 +32,7 @@ export default class List extends Component {
       <div className='List'>
         {items.map(item => <ListItem
           {...item}
+          key={item.id}
           toggle={() => dispatch(toggleFavorite(item.id))}
           isFavorite={isFavorite(item.id)}
         />)}
