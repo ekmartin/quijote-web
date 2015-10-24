@@ -12,6 +12,7 @@ const GridItem = ({ text, author, onRemove }) => {
       <button onClick={onRemove} className='Button--transparent'>
         <i className='fa fa-close' />
       </button>
+      <a href='' className='share-link'><i class="fa fa-twitter"/> Share</a>
     </div>
   );
 };
