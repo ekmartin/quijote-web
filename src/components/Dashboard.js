@@ -15,7 +15,7 @@ export default class Dashboard extends React.Component {
     if (this.state.searching) {
       return (
         <div>
-          <h2>Search Results:</h2>
+          <h2>Search Results</h2>
           <List
             items={quotes}
             {...this.props}
