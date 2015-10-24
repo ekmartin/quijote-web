@@ -15,9 +15,14 @@ export const loadFavorites = createAction(
 );
 
 export function removeFavorite(id) {
-  return {
-    type: types.REMOVE_FAVORITE,
-    payload: { id }
+  return (dispatch, getState) => {
+    fetch(`/favorite/${id}/`, { method: 'delete' })
+      .then(
+        () => dispatch({
+          type: types.FAVORITE_REMOVED,
+          payload: { id }
+        })
+      );
   };
 }
 

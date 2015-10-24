@@ -16,8 +16,7 @@ export default createReducer(initialState, {
     }, {});
   },
 
-  [types.REMOVE_FAVORITE]: (state, action) => {
-    const { id } = action.payload;
-    return { ...state, [id]: undefined };
-  }
+  [types.FAVORITE_REMOVED]: (state, action) => ({
+    ...state, [action.payload.id]: false
+  })
 });

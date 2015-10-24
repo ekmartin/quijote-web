@@ -39,7 +39,7 @@ const Dashboard = ({
           onSubmit={(quote) => dispatch(createQuote(quote))}
         />}
 
-        <Grid items={favorites} />
+        <Grid items={favorites} {...{ dispatch }} />
       </div>
 
       <div>
