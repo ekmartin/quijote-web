@@ -1,4 +1,5 @@
 import * as types from '../actions/ActionTypes';
+import createReducer from '../utils/createReducer';
 
 const initialState = {
   items: {},
@@ -12,13 +13,20 @@ function makeKeyed(items) {
   }, {});
 }
 
-export default function quotes(state = initialState, action) {
-  switch (action.type) {
-  case types.SEARCH_QUOTES_RECEIVED:
-    return { ...state, items: makeKeyed(action.payload) };
-  case types.TOGGLE_QUOTE_EDITOR:
-    return { ...state, isQuoteEditorOpen: !state.isQuoteEditorOpen };
-  default:
-    return state;
-  }
+function loadQuotes(state, action) {
+  return {
+    ...state,
+    items: {
+      ...state.items,
+      ...makeKeyed(action.payload)
+    }
+  };
 }
+
+export default createReducer(initialState, {
+  [types.LOAD_FAVORITES]: loadQuotes,
+  [types.SEARCH_QUOTES_RECEIVED]: loadQuotes,
+  [types.TOGGLE_QUOTE_EDITOR]: (state, action) => {
+    return { ...state, isQuoteEditorOpen: !state.isQuoteEditorOpen };
+  }
+});
