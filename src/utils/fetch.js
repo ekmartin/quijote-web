@@ -25,7 +25,10 @@ function doFetch(url, { method, body } = {}) {
   if (body) options.body = JSON.stringify(body);
   return fetch(API_URL + url, options)
     .then(checkStatus)
-    .then(response => response.json());
+    .then(response => {
+      if (response.status === 204) return {};
+      return response.json();
+    });
 }
 
 export default doFetch;
