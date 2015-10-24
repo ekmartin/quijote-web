@@ -12,9 +12,9 @@ export const retrieveQuote = createAction(types.RETRIEVE_QUOTE, id =>
 
 export const createQuote = createAction(
   types.CREATE_QUOTE,
-  (quote) => fetch('/quote/', {
+  (body) => fetch('/quote/', {
     method: 'post',
-    body: JSON.stringify(quote)
+    body
   })
 );
 
