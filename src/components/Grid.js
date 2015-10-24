@@ -6,8 +6,10 @@ const GridItem = ({ text, author, color }) => {
     <div className='GridItem' style={{
       backgroundColor: color
     }}>
-      <blockquote className='quote'>{text}</blockquote>
-      <span>&mdash; {author.name}</span>
+      <blockquote className='quote'>“{text}”</blockquote>
+      <p className='author'>
+        <span>&mdash; {author.name}</span>
+      </p>
     </div>
   );
 };
@@ -27,7 +29,7 @@ export default class Grid extends Component {
       <div className='Grid'>
         {items.map(item => <GridItem
           {...item}
-          color={randomColor()}
+          color={'#ecf0f1'}
         />)}
       </div>
     );
