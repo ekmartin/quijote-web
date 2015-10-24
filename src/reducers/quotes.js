@@ -26,6 +26,15 @@ function loadQuotes(state, action) {
 export default createReducer(initialState, {
   [types.LOAD_FAVORITES]: loadQuotes,
   [types.SEARCH_QUOTES_RECEIVED]: loadQuotes,
+  [types.CREATE_QUOTE]: (state, action) => {
+    return {
+      ...state,
+      items: {
+        ...state.items,
+        [action.payload.id]: action.payload
+      }
+    }
+  },
   [types.TOGGLE_QUOTE_EDITOR]: (state, action) => {
     return { ...state, isQuoteEditorOpen: !state.isQuoteEditorOpen };
   }
