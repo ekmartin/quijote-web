@@ -10,7 +10,7 @@ function addFavorite(state, action) {
 
 export default createReducer(initialState, {
   [types.ADD_FAVORITE]: addFavorite,
-  [types.ADD_QUOTE]: addFavorite,
+  [types.CREATE_QUOTE]: addFavorite,
   [types.LOAD_FAVORITES]: (state, action) => {
     return action.payload.reduce((obj, item) => {
       obj[item.id] = true;

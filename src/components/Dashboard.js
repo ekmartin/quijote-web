@@ -1,6 +1,6 @@
 import React from 'react';
 import QuoteEditor from './QuoteEditor';
-import { createQuote } from '../actions/QuoteActions';
+import { createQuote, toggleQuoteEditor } from '../actions/QuoteActions';
 import Grid from './Grid';
 import List from './List';
 
@@ -41,6 +41,11 @@ export default class Dashboard extends React.Component {
     this.props.onSearch(e.target.value);
   }
 
+  handleSubmit(quote) {
+    this.props.dispatch(createQuote(quote));
+    this.props.dispatch(toggleQuoteEditor());
+  }
+
   render() {
     const { props } = this;
 
@@ -59,16 +64,16 @@ export default class Dashboard extends React.Component {
           <div>
             <div className='flex'>
               <h2>My Quotes</h2>
-              <button onClick={() => props.dispatch(props.toggleQuoteEditor())} className='Button--transparent'>
+              <button onClick={() => props.dispatch(toggleQuoteEditor())} className='Button--transparent'>
                 <i className={`fa ${props.isQuoteEditorOpen ? 'fa-close' : 'fa-plus'}`} />
               </button>
             </div>
 
             {props.isQuoteEditorOpen && <QuoteEditor
-              onSubmit={(quote) => props.dispatch(createQuote(quote))}
+              onSubmit={this.handleSubmit.bind(this)}
             />}
 
-            <Grid items={props.favorites} />
+            <Grid items={props.favorites} dispatch={props.dispatch} />
           </div>
           {this.renderSide()}
         </div>

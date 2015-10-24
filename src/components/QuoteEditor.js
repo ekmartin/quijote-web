@@ -26,7 +26,7 @@ export default class QuoteEditor extends Component {
     return (
       <form onSubmit={::this.handleSubmit}>
         <input ref='author' type='text' placeholder='Who said this?' autoFocus />
-        <textarea ref='text' placeholder='What were the exact words'></textarea>
+        <textarea ref='text' placeholder='What were the exact words?'></textarea>
         <label className='private'><input ref='private' type='checkbox' />
           {'Is this a private quote?'}
         </label>
