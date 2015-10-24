@@ -27,7 +27,7 @@ export default class QuoteEditor extends Component {
       <form onSubmit={::this.handleSubmit}>
         <input ref='author' type='text' placeholder='Who said this?' autoFocus />
         <textarea ref='text' placeholder='What were the exact words' />
-        <label><input ref='private' type='checkbox' /> this shit is private yo</label>
+        <label className='private'><input ref='private' type='checkbox' /> this shit is private yo</label>
         <button type='submit'>Save for eternity</button>
       </form>
     );
