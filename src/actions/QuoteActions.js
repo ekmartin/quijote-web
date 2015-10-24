@@ -3,7 +3,7 @@ import fetch from '../utils/fetch';
 import * as types from './ActionTypes';
 
 export const listQuotes = createAction(types.LIST_QUOTES, () =>
-  fetch('/quotes/')
+  fetch('/quote/')
 );
 
 export const retrieveQuote = createAction(types.RETRIEVE_QUOTE, id =>
@@ -12,7 +12,10 @@ export const retrieveQuote = createAction(types.RETRIEVE_QUOTE, id =>
 
 export const createQuote = createAction(
   types.CREATE_QUOTE,
-  (quote) => fetch('/quotes/', { method: 'post', body: JSON.stringify(quote) })
+  (quote) => fetch('/quote/', {
+    method: 'post',
+    body: JSON.stringify(quote)
+  })
 );
 
 export const searchResultReceived = createAction(

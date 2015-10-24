@@ -1,10 +1,7 @@
 import * as types from '../actions/ActionTypes';
 
 const initialState = {
-  items: {
-    1: { id: 1, author: 'Hanse', text: 'Hello' },
-    2: { id: 2, author: 'Dijkstra', text: 'I like this shit' }
-  },
+  items: {},
   isQuoteEditorOpen: false
 };
 

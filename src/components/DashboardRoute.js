@@ -2,7 +2,8 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 import QuoteEditor from './QuoteEditor';
-import { search, toggleQuoteEditor } from '../actions/QuoteActions';
+import { search, toggleQuoteEditor, createQuote } from '../actions/QuoteActions';
+import { loadFavorites } from '../actions/FavoriteActions';
 import Grid from './Grid';
 import List from './List';
 
@@ -34,7 +35,9 @@ const Dashboard = ({
           </button>
         </div>
 
-        {isQuoteEditorOpen && <QuoteEditor />}
+        {isQuoteEditorOpen && <QuoteEditor
+          onSubmit={(quote) => dispatch(createQuote(quote))}
+        />}
 
         <Grid items={favorites} />
       </div>
@@ -66,6 +69,10 @@ export default class DashboardRoute extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     quotes: PropTypes.array.isRequired
+  }
+
+  componentDidMount() {
+    this.props.dispatch(loadFavorites());
   }
 
   render() {

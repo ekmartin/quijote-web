@@ -1,11 +1,18 @@
+import { createAction } from 'redux-actions';
 import * as types from './ActionTypes';
+import fetch from '../utils/fetch';
 
-export function addFavorite(id) {
-  return {
-    type: types.ADD_FAVORITE,
-    payload: { id }
-  };
-}
+export const addFavorite = createAction(
+  types.ADD_FAVORITE,
+  id => fetch(`/favorite/${id}/`, {
+    method: 'put'
+  })
+);
+
+export const loadFavorites = createAction(
+  types.LOAD_FAVORITES,
+  () => fetch('/favorite/')
+);
 
 export function removeFavorite(id) {
   return {
