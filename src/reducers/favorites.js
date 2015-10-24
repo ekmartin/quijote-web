@@ -4,7 +4,7 @@ import createReducer from '../utils/createReducer';
 const initialState = {};
 
 export default createReducer(initialState, {
-  [types.ADD_FAVORITE_COMPLETE]: (state, action) => {
+  [types.ADD_FAVORITE]: (state, action) => {
     const { id } = action.payload;
     return { ...state, [id]: true };
   },
@@ -13,7 +13,7 @@ export default createReducer(initialState, {
     return action.payload.reduce((obj, item) => {
       obj[item.id] = true;
       return obj;
-    }, {})
+    }, {});
   },
 
   [types.REMOVE_FAVORITE]: (state, action) => {

@@ -53,16 +53,22 @@ const Dashboard = ({
   </div>
 );
 
-function selectFavorites(state) {
-  return Object.keys(state.favorites)
-    .filter(id => !!state.favorites[id])
-    .map(id => state.quotes.items[id]);
+function selectFavorites({ favorites, quotes }) {
+  return Object.keys(favorites)
+    .filter(id => !!favorites[id])
+    .map(id => quotes.items[id]);
+}
+
+function selectSearchQuotes({ quotes, favorites }) {
+  return Object.keys(quotes.items)
+    .filter(id => !favorites[id])
+    .map(id => quotes.items[id]);
 }
 
 @connect(state => ({
   favorites: selectFavorites(state),
   isFavorite: (id) => !!state.favorites[id],
-  quotes: Object.keys(state.quotes.items).map(id => state.quotes.items[id]),
+  quotes: selectSearchQuotes(state),
   isQuoteEditorOpen: state.quotes.isQuoteEditorOpen
 }))
 export default class DashboardRoute extends Component {
