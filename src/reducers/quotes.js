@@ -14,17 +14,38 @@ function makeKeyed(items) {
 }
 
 function loadQuotes(state, action) {
+  const oldState = Object.keys(state.items).reduce((obj, id) => ({
+    ...obj,
+    [id]: {
+      ...state.items[id],
+      filtered: false
+    }
+  }), {});
+
+  const items = action.payload.map(quote => ({
+    ...quote,
+    filtered: true
+  }));
+
   return {
     ...state,
     items: {
-      ...state.items,
-      ...makeKeyed(action.payload)
+      ...oldState,
+      ...makeKeyed(items)
     }
   };
 }
 
 export default createReducer(initialState, {
-  [types.LOAD_FAVORITES]: loadQuotes,
+  [types.LOAD_FAVORITES]: (state, action) => {
+    return {
+      ...state,
+      items: {
+        ...state.items,
+        ...makeKeyed(action.payload)
+      }
+    };
+  },
   [types.SEARCH_QUOTES_RECEIVED]: loadQuotes,
   [types.CREATE_QUOTE]: (state, action) => {
     return {
@@ -33,7 +54,7 @@ export default createReducer(initialState, {
         ...state.items,
         [action.payload.id]: action.payload
       }
-    }
+    };
   },
   [types.TOGGLE_QUOTE_EDITOR]: (state, action) => {
     return { ...state, isQuoteEditorOpen: !state.isQuoteEditorOpen };

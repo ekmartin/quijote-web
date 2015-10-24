@@ -14,7 +14,8 @@ function selectFavorites({ favorites, quotes }) {
 function selectSearchQuotes({ quotes, favorites }) {
   return Object.keys(quotes.items)
     .filter(id => !favorites[id])
-    .map(id => quotes.items[id]);
+    .map(id => quotes.items[id])
+    .filter(quote => quote && quote.filtered);
 }
 
 @connect(state => ({
