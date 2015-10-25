@@ -1,5 +1,9 @@
 # Quijote Web
 
+![Screenshot](http://i.imgur.com/ObzSCg2.png)
+
+The frontend for our [Microsoft Student Hackathon Trondheim](http://hackathon15.azurewebsites.net/) project.
+
 ## Installation
 ```bash
 npm install
