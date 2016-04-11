@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/ekmartin/quijote-web#readme",
   "dependencies": {
-    "classnames": "2.2.0",
+    "classnames": "2.2.3",
     "colors.js": "^1.2.4",
     "core-js": "1.2.2",
     "history": "1.12.5",
