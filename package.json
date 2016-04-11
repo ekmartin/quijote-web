@@ -39,7 +39,7 @@
     "redux-promise": "0.5.3",
     "redux-router": "2.0.0-beta1",
     "redux-thunk": "^2.0.1",
-    "whatwg-fetch": "0.10.0"
+    "whatwg-fetch": "0.11.0"
   },
   "devDependencies": {
     "babel-core": "5.8.25",
