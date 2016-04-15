@@ -24,7 +24,7 @@
     "classnames": "2.2.0",
     "colors.js": "^1.2.4",
     "core-js": "1.2.2",
-    "history": "1.12.5",
+    "history": "2.0.2",
     "lodash": "^3.10.1",
     "randomcolor": "^0.4.0",
     "rc-dialog": "^5.1.0",
